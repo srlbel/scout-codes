@@ -1,6 +1,10 @@
 [package]
 name = "scout-encoder"
 version = "0.1.0"
+authors = ["Juan Simancas <dev.juansimancas@proton.me"]
+description = "A simple library that collects the common encoding systems that the scouts uses"
+repository = "https://github.com/srlbel/scout-codes.git"
+license = "MIT"
 edition = "2021"
 
 [dependencies]
