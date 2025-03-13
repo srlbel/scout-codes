@@ -16,21 +16,21 @@ impl Murcielago {
 
     /// Decodes the message, replacing numbers with their corresponding letters using 0 as it's base.
     pub fn decode_message_base0(&self) -> String {
-        let lowercase_code = self.coded_message.to_lowercase();
+        let uppercase_code = self.coded_message.to_uppercase();
 
-        let decoded = lowercase_code
+        let decoded = uppercase_code
             .chars()
             .map(|c| match c {
-                '0' => 'm',
-                '1' => 'u',
-                '2' => 'r',
-                '3' => 'c',
-                '4' => 'i',
-                '5' => 'e',
-                '6' => 'l',
-                '7' => 'a',
-                '8' => 'g',
-                '9' => 'o',
+                '0' => 'M',
+                '1' => 'U',
+                '2' => 'R',
+                '3' => 'C',
+                '4' => 'I',
+                '5' => 'E',
+                '6' => 'L',
+                '7' => 'A',
+                '8' => 'G',
+                '9' => 'O',
                 _ => c,
             })
             .collect();
@@ -40,21 +40,21 @@ impl Murcielago {
 
     /// Decodes the message, replacing numbers with their corresponding letters using 1 as it's base.
     pub fn decode_message_base1(&self) -> String {
-        let lowercase_code = self.coded_message.to_lowercase();
+        let uppercase_code = self.coded_message.to_uppercase();
 
-        let decoded = lowercase_code
+        let decoded = uppercase_code
             .chars()
             .map(|c| match c {
-                '1' => 'm',
-                '2' => 'u',
-                '3' => 'r',
-                '4' => 'c',
-                '5' => 'i',
-                '6' => 'e',
-                '7' => 'l',
-                '8' => 'a',
-                '9' => 'g',
-                '0' => 'o',
+                '1' => 'M',
+                '2' => 'U',
+                '3' => 'R',
+                '4' => 'C',
+                '5' => 'I',
+                '6' => 'E',
+                '7' => 'L',
+                '8' => 'A',
+                '9' => 'G',
+                '0' => 'O',
                 _ => c,
             })
             .collect();
@@ -75,21 +75,21 @@ pub fn decode_base1(coded_message: &str) -> String {
 
 /// Encodes a given string using the `Murcielago` cipher starting with 0 without requiring an instance
 pub fn encode_base0(message: &str) -> String {
-    let lowercase_message = message.to_lowercase();
+    let uppercase_message = message.to_uppercase();
 
-    let encoded = lowercase_message
+    let encoded = uppercase_message
         .chars()
         .map(|c| match c {
-            'm' => '0',
-            'u' => '1',
-            'r' => '2',
-            'c' => '3',
-            'i' => '4',
-            'e' => '5',
-            'l' => '6',
-            'a' => '7',
-            'g' => '8',
-            'o' => '9',
+            'M' => '0',
+            'U' => '1',
+            'R' => '2',
+            'C' => '3',
+            'I' => '4',
+            'E' => '5',
+            'L' => '6',
+            'A' => '7',
+            'G' => '8',
+            'O' => '9',
             _ => c,
         })
         .collect();
@@ -99,21 +99,21 @@ pub fn encode_base0(message: &str) -> String {
 
 /// Encodes a given string using the `Murcielago` cipher starting with 1 without requiring an instance
 pub fn encode_base1(message: &str) -> String {
-    let lowercase_message = message.to_lowercase();
+    let uppercase_message = message.to_uppercase();
 
-    let encoded = lowercase_message
+    let encoded = uppercase_message
         .chars()
         .map(|c| match c {
-            'm' => '1',
-            'u' => '2',
-            'r' => '3',
-            'c' => '4',
-            'i' => '5',
-            'e' => '6',
-            'l' => '7',
-            'a' => '8',
-            'g' => '9',
-            'o' => '0',
+            'M' => '1',
+            'U' => '2',
+            'R' => '3',
+            'C' => '4',
+            'I' => '5',
+            'E' => '6',
+            'L' => '7',
+            'A' => '8',
+            'G' => '9',
+            'O' => '0',
             _ => c,
         })
         .collect();
@@ -127,21 +127,21 @@ mod test {
 
     #[test]
     fn should_return_scouts_base0() {
-        assert_eq!(decode_base0("S391TS"), "scouts");
+        assert_eq!(decode_base0("S391TS"), "SCOUTS");
     }
 
     #[test]
     fn should_return_scouts_base1() {
-        assert_eq!(decode_base1("S402TS"), "scouts");
+        assert_eq!(decode_base1("S402TS"), "SCOUTS");
     }
 
     #[test]
     fn should_return_s391ts_from_scouts() {
-        assert_eq!(encode_base0("SCOUTS"), "s391ts");
+        assert_eq!(encode_base0("SCOUTS"), "S391TS");
     }
 
     #[test]
     fn should_return_s402ts_from_scouts() {
-        assert_eq!(encode_base1("SCOUTS"), "s402ts");
+        assert_eq!(encode_base1("SCOUTS"), "S402TS");
     }
 }
