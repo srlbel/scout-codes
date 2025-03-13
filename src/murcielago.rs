@@ -126,22 +126,22 @@ mod test {
     use super::*;
 
     #[test]
-    fn should_return_scouts_base0() {
-        assert_eq!(decode_base0("S391TS"), "SCOUTS");
+    fn should_return_string_from_encoded_base0() {
+        assert_eq!(decode_base0("9 8 7 6 5 4 3 2 1 0"), "O G A L E I C R U M");
     }
 
     #[test]
-    fn should_return_scouts_base1() {
-        assert_eq!(decode_base1("S402TS"), "SCOUTS");
+    fn should_return_string_from_encoded_base1() {
+        assert_eq!(decode_base1("0 9 8 7 6 5 4 3 2 1"), "O G A L E I C R U M");
     }
 
     #[test]
-    fn should_return_s391ts_from_scouts() {
-        assert_eq!(encode_base0("SCOUTS"), "S391TS");
+    fn should_return_encoded_base0_from_string() {
+        assert_eq!(encode_base0("M U R C I E L A G O"), "0 1 2 3 4 5 6 7 8 9");
     }
 
     #[test]
-    fn should_return_s402ts_from_scouts() {
-        assert_eq!(encode_base1("SCOUTS"), "S402TS");
+    fn should_return_encoded_base1_from_string() {
+        assert_eq!(encode_base1("M U R C I E L A G O"), "1 2 3 4 5 6 7 8 9 0");
     }
 }
