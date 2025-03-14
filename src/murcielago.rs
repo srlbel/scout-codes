@@ -3,20 +3,20 @@
 
 /// Represents a coded message that can be decoded.
 pub struct Murcielago {
-    coded_message: String,
+    message: String,
 }
 
 impl Murcielago {
     /// Creates a new `Murcielago` instance.
-    pub fn new(coded_message: &str) -> Self {
+    pub fn new(message: &str) -> Self {
         Self {
-            coded_message: coded_message.to_string(),
+            message: message.to_string(),
         }
     }
 
     /// Decodes the message, replacing numbers with their corresponding letters using 0 as it's base.
-    pub fn decode_message_base0(&self) -> String {
-        let uppercase_code = self.coded_message.to_uppercase();
+    pub fn decode_base0(&self) -> String {
+        let uppercase_code = self.message.to_uppercase();
 
         let decoded = uppercase_code
             .chars()
@@ -39,8 +39,8 @@ impl Murcielago {
     }
 
     /// Decodes the message, replacing numbers with their corresponding letters using 1 as it's base.
-    pub fn decode_message_base1(&self) -> String {
-        let uppercase_code = self.coded_message.to_uppercase();
+    pub fn decode_base1(&self) -> String {
+        let uppercase_code = self.message.to_uppercase();
 
         let decoded = uppercase_code
             .chars()
@@ -61,64 +61,74 @@ impl Murcielago {
 
         decoded
     }
+
+    /// Encodes a given string using the `Murcielago` cipher starting with 0 without requiring an instance
+    pub fn encode_base0(&self) -> String {
+        let uppercase_message = self.message.to_uppercase();
+
+        let encoded = uppercase_message
+            .chars()
+            .map(|c| match c {
+                'M' => '0',
+                'U' => '1',
+                'R' => '2',
+                'C' => '3',
+                'I' => '4',
+                'E' => '5',
+                'L' => '6',
+                'A' => '7',
+                'G' => '8',
+                'O' => '9',
+                _ => c,
+            })
+            .collect();
+
+        encoded
+    }
+
+    /// Encodes a given string using the `Murcielago` cipher starting with 1 without requiring an instance
+    pub fn encode_base1(&self) -> String {
+        let uppercase_message = self.message.to_uppercase();
+
+        let encoded = uppercase_message
+            .chars()
+            .map(|c| match c {
+                'M' => '1',
+                'U' => '2',
+                'R' => '3',
+                'C' => '4',
+                'I' => '5',
+                'E' => '6',
+                'L' => '7',
+                'A' => '8',
+                'G' => '9',
+                'O' => '0',
+                _ => c,
+            })
+            .collect();
+
+        encoded
+    }
 }
 
 /// Decodes a given string using the `Murcielago` cipher starting with 0 without requiring an instance.
-pub fn decode_base0(coded_message: &str) -> String {
-    Murcielago::new(coded_message).decode_message_base0()
+pub fn decode_base0(message: &str) -> String {
+    Murcielago::new(message).decode_base0()
 }
 
 /// Decodes a given string using the `Murcielago` cipher starting with 1 without requiring an instance.
-pub fn decode_base1(coded_message: &str) -> String {
-    Murcielago::new(coded_message).decode_message_base1()
+pub fn decode_base1(message: &str) -> String {
+    Murcielago::new(message).decode_base1()
 }
 
-/// Encodes a given string using the `Murcielago` cipher starting with 0 without requiring an instance
+/// Encodes a given string using the `Murcielago` cipher starting with 1 without requiring an instance.
 pub fn encode_base0(message: &str) -> String {
-    let uppercase_message = message.to_uppercase();
-
-    let encoded = uppercase_message
-        .chars()
-        .map(|c| match c {
-            'M' => '0',
-            'U' => '1',
-            'R' => '2',
-            'C' => '3',
-            'I' => '4',
-            'E' => '5',
-            'L' => '6',
-            'A' => '7',
-            'G' => '8',
-            'O' => '9',
-            _ => c,
-        })
-        .collect();
-
-    encoded
+    Murcielago::new(message).encode_base0()
 }
 
-/// Encodes a given string using the `Murcielago` cipher starting with 1 without requiring an instance
+/// Encodes a given string using the `Murcielago` cipher starting with 1 without requiring an instance.
 pub fn encode_base1(message: &str) -> String {
-    let uppercase_message = message.to_uppercase();
-
-    let encoded = uppercase_message
-        .chars()
-        .map(|c| match c {
-            'M' => '1',
-            'U' => '2',
-            'R' => '3',
-            'C' => '4',
-            'I' => '5',
-            'E' => '6',
-            'L' => '7',
-            'A' => '8',
-            'G' => '9',
-            'O' => '0',
-            _ => c,
-        })
-        .collect();
-
-    encoded
+    Murcielago::new(message).encode_base1()
 }
 
 #[cfg(test)]
