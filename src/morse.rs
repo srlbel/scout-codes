@@ -53,7 +53,7 @@ impl Morse {
                     "--..." => "7",
                     "---.." => "8",
                     "----." => "9",
-                    _ => panic!("Invalid morse code! {}", letter),
+                    _ => panic!("Invalid morse code!"),
                 };
 
                 decoded_word.push_str(decoded_letter);
@@ -81,10 +81,16 @@ pub fn encode(message: &str) -> String {
 
 #[cfg(test)]
 mod test {
-    use crate::morse::decode;
+    use super::*;
 
     #[test]
     fn should_return_a_bc() {
         assert_eq!(decode(".-//-.../-.-."), "A BC")
+    }
+
+    #[test]
+    #[should_panic(expected = "Invalid morse code!")]
+    fn encode_panic_with_alphabet() {
+        decode("abc");
     }
 }
